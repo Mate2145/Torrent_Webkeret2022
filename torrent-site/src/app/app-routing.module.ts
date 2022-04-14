@@ -2,7 +2,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'download',loadChildren: () => import('./pages/download/download.module').then(m => m.DownloadModule)}
+  {
+    path: 'main',loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule)
+  },
+  {
+    path: 'contact',loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule)
+  },
+  {
+     path: 'download',loadChildren: () => import('./pages/download/download.module').then(m => m.DownloadModule)
+  },
+  {
+    path: '',
+    redirectTo: '/main',
+    pathMatch: 'full'
+  },
+  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+  { path: 'signup', loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupModule) },
+  {
+    path: '**',
+    redirectTo: '/main'
+  }
+  
 ];
 
 @NgModule({

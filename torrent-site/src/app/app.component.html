@@ -1,4 +1,4 @@
-<app-menu (selectedPage)="changePage($event)"></app-menu>
+<app-menu (selectedPage)="changePage($event)" [currentPage]="page"></app-menu>
 <router-outlet></router-outlet>
 <!-- <ng-container [ngSwitch]="page" >
 <ng-container *ngSwitchCase="'main'">

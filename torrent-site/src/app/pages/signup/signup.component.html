@@ -1,1 +1,19 @@
-<p>signup works!</p>
+<div class="main_component">
+    <div class="center">
+    <h1>Login Page</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div><label for="username">Username</label><input type="text" formControlName="username" /></div>
+        <div><label for="password">Password</label><input type="password" formControlName="password" /></div>
+        <div><label for="repassword">Re-Password</label><input type="password" formControlName="repassword" /></div>
+        <div formGroupName="name">
+        <div><label for="firstname">FirstName</label><input type="text" formControlName="firstname" /></div>
+        <div><label for="lastname">LastName</label><input type="text" formControlName="lastname" /></div>
+        </div>
+        <div>
+            <button type="submit">Register</button>
+            <button (click)="goBack()" >Back</button>
+        </div>
+    </form>
+    </div>
+</div>
+

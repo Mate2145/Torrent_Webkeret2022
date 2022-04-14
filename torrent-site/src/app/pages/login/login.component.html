@@ -1,1 +1,9 @@
-<p>login works!</p>
+<div class="main_component">
+    <h1>Login Page</h1>
+    <span><label for="username">Username</label><input type="text" [formControl]="username" /></span>
+    <span><label for="password">Password</label><input type="password" [formControl]="password" /></span>
+    <span>
+        <button (click)="login()">Login</button>
+        <button [routerLink]="'/signup'" >Sign-up</button>
+    </span>
+</div>

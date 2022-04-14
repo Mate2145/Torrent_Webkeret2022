@@ -1,6 +1,19 @@
-<app-menu></app-menu>
+<app-menu (selectedPage)="changePage($event)"></app-menu>
+<router-outlet></router-outlet>
+<!-- <ng-container [ngSwitch]="page" >
+<ng-container *ngSwitchCase="'main'">
+  <div class="main_component">
+    <app-main></app-main>
+  </div>
+</ng-container>
+<ng-container *ngSwitchCase="'download'">
+  <app-download></app-download>
+</ng-container>
+<ng-container *ngSwitchCase="'contact'">
+  <app-contact>
+    <h1>This is the contact page.</h1>
+  </app-contact>
+</ng-container>
+</ng-container> -->
 
-<app-main *ngIf="page === 'main'"></app-main>
-<app-download *ngIf="page === 'download'"></app-download>
-<app-contact *ngIf="page === 'contact'"></app-contact>
-<!--<router-outlet></router-outlet> -->
+

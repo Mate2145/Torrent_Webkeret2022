@@ -4,17 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
-import { DownloadComponent } from './pages/download/download.component';
+//import { DownloadComponent } from './pages/download/download.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { DateFormatPipe } from './shared/pipes/date-format.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    DownloadComponent,
+    //DownloadComponent,
     ContactComponent,
-    MenuComponent
+    MenuComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,

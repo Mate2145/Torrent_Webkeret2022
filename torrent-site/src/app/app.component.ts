@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'torrent-site';
   page = 'main';
+
+  changePage(selectedPage:string){
+    this.page = selectedPage;
+  }
 }

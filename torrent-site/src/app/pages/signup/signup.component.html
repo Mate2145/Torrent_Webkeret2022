@@ -2,16 +2,17 @@
     <div class="center">
     <h1>Login Page</h1>
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-        <div><label for="username">Username</label><input type="text" formControlName="username" /></div>
-        <div><label for="password">Password</label><input type="password" formControlName="password" /></div>
-        <div><label for="repassword">Re-Password</label><input type="password" formControlName="repassword" /></div>
-        <div formGroupName="name">
-        <div><label for="firstname">FirstName</label><input type="text" formControlName="firstname" /></div>
-        <div><label for="lastname">LastName</label><input type="text" formControlName="lastname" /></div>
+        <mat-form-field><mat-label for="email">Username</mat-label><input matInput type="text" formControlName="email" /></mat-form-field>
+        <mat-form-field><mat-label for="password">Password</mat-label><input matInput type="password" formControlName="password" /></mat-form-field>
+        <mat-form-field><mat-label for="repassword">Re-Password</mat-label><input matInput type="password" formControlName="repassword" /></mat-form-field>
+        <div formGroupName="name" class="subForm">
+        <mat-form-field><mat-label for="firstname">FirstName</mat-label><input matInput type="text" formControlName="firstname" /></mat-form-field>
+        <mat-form-field><mat-label for="lastname">LastName</mat-label><input matInput type="text" formControlName="lastname" /></mat-form-field>
         </div>
         <div>
-            <button type="submit">Register</button>
-            <button (click)="goBack()" >Back</button>
+            <button mat-raised-button type="submit">Register</button>
+            <button mat-raised-button (click)="goBack()" >Back</button>
+           
         </div>
     </form>
     </div>

@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from './shared/services/auth.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +14,9 @@ export class AppComponent implements OnInit {
   title = 'torrent-site';
   page = 'main';
   routes: Array<string> = [];
+  loggedinUser?:firebase.default.User|null;
 
-  constructor(private router:Router)
+  constructor(private router:Router,private authServ:AuthService)
   {
     
   }
@@ -27,6 +30,14 @@ export class AppComponent implements OnInit {
         this.page = currentPage;
       }
     });
+
+    this.authServ.isUserLoggedIn().subscribe(user =>{
+      this.loggedinUser = user;
+      localStorage.setItem('user',JSON.stringify(this.loggedinUser));
+    },error =>{
+        localStorage.setItem('user',JSON.stringify('null'));
+        console.error(error);
+    })
   }
   changePage(selectedPage:string)
   {
@@ -44,5 +55,10 @@ export class AppComponent implements OnInit {
     {
       sidenav.close();
     }
+  }
+
+  logout( event?: boolean)
+  {
+    this.authServ.logout();
   }
 }

@@ -1,6 +1,6 @@
 <mat-sidenav-container>
 <mat-sidenav #sidenav>
-<app-menu (selectedPage)="changePage($event)" [currentPage]="page" (NavBarClose)="onClose($event,sidenav)" ></app-menu>
+<app-menu (selectedPage)="changePage($event)" [currentPage]="page" (NavBarClose)="onClose($event,sidenav)" [loggedinUser]="loggedinUser" (onLogout)="logout($event)" ></app-menu>
 </mat-sidenav>
 <mat-sidenav-content>
 
@@ -13,7 +13,8 @@
     <div>nMate</div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
       <ul fxLayout fxLayoutGap="10px" class="nav-items">
-        <li><a routerLink="/login">Login</a></li>
+        <li *ngIf="!(loggedinUser)"><a routerLink="/login">Login</a></li>
+        <li *ngIf="loggedinUser"><a routerLink="/login" (click)="logout()">Logout</a></li>
         <li><a routerLink="/signup">Sign-Up</a></li>
         <li><a routerLink="/main">Feed</a></li>
         <li><a routerLink="/download">Download</a></li>

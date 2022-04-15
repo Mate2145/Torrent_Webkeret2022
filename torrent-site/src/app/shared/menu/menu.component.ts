@@ -9,7 +9,9 @@ export class MenuComponent implements OnInit {
 
  @Output() selectedPage: EventEmitter<string> = new EventEmitter();
  @Input() currentPage: string = '';
+ @Input() loggedinUser?: firebase.default.User|null;
  @Output() NavBarClose: EventEmitter<boolean> = new EventEmitter();
+ @Output() onLogout: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
@@ -21,8 +23,12 @@ export class MenuComponent implements OnInit {
     this.selectedPage.emit(this.currentPage);
   }
 
-  close()
+  close(logout?: boolean)
   {
     this.NavBarClose.emit(true);
+    if (logout === true)
+    {
+      this.onLogout.emit(logout);
+    }
   }
 }

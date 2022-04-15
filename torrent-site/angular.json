@@ -100,6 +100,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "torrent-site:build:production",
+            "firebaseProject": "torrent-site-webfejl",
+            "firebaseHostingSite": "torrent-site-webfejl"
+          }
         }
       }
     }

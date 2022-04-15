@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, createPlatform, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../shared/models/Users';
 
 @Component({
@@ -11,7 +12,7 @@ import { User } from '../../shared/models/Users';
 export class SignupComponent implements OnInit {
 
   signUpForm = new FormGroup({
-    username:  new FormControl(''),
+    email:  new FormControl(''),
     password: new FormControl(''),
     repassword: new FormControl(''),
     name: new FormGroup({
@@ -22,18 +23,21 @@ export class SignupComponent implements OnInit {
 
 
 
-  constructor(private location:Location,private fb: FormBuilder) { }
+  constructor(private location:Location,private authServ: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  createForm(user: User)
-  {
-    return this.fb.group(user);
-  }
 
-  onSubmit(){
+
+  onSubmit()
+  {
     console.log(this.signUpForm.value);
+    this.authServ.signup(this.signUpForm.get("email")?.value,this.signUpForm.get("password")?.value).then(cred =>{
+      console.log(cred);
+    }).catch(error =>{
+      console.error(error);
+    })
   }
 
   goBack(){

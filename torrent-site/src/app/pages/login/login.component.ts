@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,22 +10,23 @@ import { Route, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username = new FormControl('');
+  email = new FormControl('');
   password = new FormControl('');
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   login()
   {
-    if(this.username.value === 'mate214' && this.password.value === 'kaka'){
+    this.authService.login(this.email.value,this.password.value).then(cred =>{
+      console.log(cred);
       this.router.navigateByUrl('/main');
-    }
-    else{
-      alert('Incorrecnt name or password');
-    }
+
+    }).catch(error =>{
+      console.error(error);
+    });
   }
   
 

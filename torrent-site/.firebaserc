@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "torrent-site-webfejl": {
+      "hosting": {
+        "torrent-site": [
+          "torrent-site-webfejl"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "torrent-site-webfejl"
+  }
+}

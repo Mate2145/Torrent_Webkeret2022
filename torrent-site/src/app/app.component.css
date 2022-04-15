@@ -17,3 +17,8 @@ a:hover,a:active{
     margin: 0;
     
 }
+
+mat-sidenav{
+    width: 250px;
+    height: auto;
+}

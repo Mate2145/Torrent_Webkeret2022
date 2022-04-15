@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -30,5 +31,18 @@ export class AppComponent implements OnInit {
   changePage(selectedPage:string)
   {
     this.router.navigateByUrl(selectedPage);
+  }
+
+  sideBarToggle(sidenav : MatSidenav)
+  {
+    sidenav.toggle();
+  }
+
+  onClose(event: any,sidenav:MatSidenav)
+  {
+    if(event == true)
+    {
+      sidenav.close();
+    }
   }
 }

@@ -9,6 +9,7 @@ export class MenuComponent implements OnInit {
 
  @Output() selectedPage: EventEmitter<string> = new EventEmitter();
  @Input() currentPage: string = '';
+ @Output() NavBarClose: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
@@ -18,5 +19,10 @@ export class MenuComponent implements OnInit {
   menuSwitch()
   {
     this.selectedPage.emit(this.currentPage);
+  }
+
+  close()
+  {
+    this.NavBarClose.emit(true);
   }
 }

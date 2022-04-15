@@ -1,12 +1,12 @@
 <mat-sidenav-container>
-<mat-sidenav>
-<app-menu (selectedPage)="changePage($event)" [currentPage]="page"></app-menu>
+<mat-sidenav #sidenav>
+<app-menu (selectedPage)="changePage($event)" [currentPage]="page" (NavBarClose)="onClose($event,sidenav)" ></app-menu>
 </mat-sidenav>
 <mat-sidenav-content>
 
   <mat-toolbar color="primary">
     <div fxHide.gt-xs>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="sideBarToggle(sidenav)">
       <mat-icon>menu</mat-icon>
     </button>
   </div>

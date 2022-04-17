@@ -1,16 +1,39 @@
-<table mat-table class="mat-elevation-z8">
-    <tr>
-        <th>Name</th>
-        <th>Size</th>
-        <th>Metric</th>
-        <th>Date</th>
-        <th>Owner</th>
-      </tr>
-    <tr *ngFor="let item of items|async">
-        <td>{{item.name}}</td>
-        <td>{{item.size}}</td>
-        <td>{{item.metric}}</td>
-        <td>{{item.date}}</td>
-        <td>{{item.owner}}</td>
-    </tr>
-</table>
+<div class="head">
+    <mat-card>
+        <h1>Downloads</h1>
+    </mat-card>
+</div>
+
+<mat-accordion class="mat-acc">
+    <mat-expansion-panel *ngFor="let item of items|async" class="mat-acc">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{item.size}}  
+            {{item.metric}}
+            | Uploaded:
+            {{item.owner}}
+            <mat-icon>description</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>--nMate--</p>
+        <p>Leírás:</p>
+        <p>Neve:{{item.name}}</p>
+        <p>Nagysága:{{item.size}} {{item.metric}}</p>
+        <p>Feltöltötte:{{item.owner}}</p>
+        <table>
+            <tr *ngFor="let item of comments|async">
+                {{item.comment}} | {{item.time.toDate() | date:'shortDate'}} | {{item.name}}
+            </tr>
+        </table>
+        <br/>
+        <a mat-raised-button href="{{item.link}}" target="_blank">DOWNLOAD</a>
+      </mat-expansion-panel>
+</mat-accordion>
+
+
+
+
+

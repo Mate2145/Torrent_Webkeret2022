@@ -12,12 +12,14 @@ import { DbService } from 'src/app/shared/services/db.service';
 
 export class DownloadComponent implements OnInit {
   items:Observable<any[]> | undefined;
+  comments:Observable<any[]>|undefined;
   constructor(private firedb:DbService) {
     
    }
 
   ngOnInit(): void {
-    this.items = this.firedb.getTorrents();
+    this.items = this.firedb.getDatabaseList('torrent');
+    this.comments = this.firedb.getDatabaseList('comment');
   }
 
 

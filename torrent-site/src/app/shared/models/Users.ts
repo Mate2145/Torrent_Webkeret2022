@@ -1,9 +1,10 @@
 export interface User{
-    username: string;
-    password: string;
+    email: string;
     name:
     {
-        firstname: string;
-        lastname: string;
+        firstname?: string | null | undefined;
+        lastname?: string|null;
     }
+    dateofbirth: Date;
+    admin:boolean;
 }

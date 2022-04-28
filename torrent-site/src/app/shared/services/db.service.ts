@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { User } from '../models/Users';
 
 
 @Injectable({
@@ -13,16 +14,29 @@ export class DbService {
   
   getDatabaseList(name:string)
   {
-    return this.firestoredb.collection(name).valueChanges();
+    return this.firestoredb.collection(name).valueChanges({ idField: 'propertyId' });
   }
 
-  createnewUser(data: unknown) {
+  getUserbyId(id:string)
+  {
+    return this.firestoredb.collection<User>("user").doc(id).valueChanges();
+  }
+
+  createnewUser(data: User) {
     return new Promise<any>((resolve, reject) => {
       this.firestoredb
         .collection("user")
-        .add(data)
-        .then(res => {console.log('Sikeres hozzadas')}, err => reject(err));
-    });
+        .doc(data.id)
+        .set(data);
+    }).then(resolve =>{
+      console.log('Sikers regisztracio');
+      console.log(resolve);
+      //this.router.navigateByUrl("/profile");
+    }).catch(reject =>
+      {
+        console.error(reject);
+        //this.router.navigateByUrl("/signup");
+      });
   }
 
   deleteUser(data: any) {

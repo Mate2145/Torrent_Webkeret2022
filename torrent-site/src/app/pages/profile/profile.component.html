@@ -1,0 +1,16 @@
+<div>
+    <mat-card>
+        <h1>My Profile</h1>
+    </mat-card>
+    <mat-card>
+        <h2>Email:</h2>
+        <p>{{item?.email}}</p>
+        <h2>Username:</h2>
+        <p>{{item?.username}}</p>
+        <h2>Neve:</h2>
+        <p>{{item?.name?.firstname}} {{item?.name?.lastname}}</p>
+        <h2>Szuletesi datum:</h2>
+        <p>{{item?.dateofbirth.toDate() | date:'shortDate'}}</p>
+
+    </mat-card>
+</div>

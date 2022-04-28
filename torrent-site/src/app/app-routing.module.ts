@@ -4,7 +4,8 @@ import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'main',loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule)
+    path: 'main',loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'contact',loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule)
@@ -15,11 +16,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/main',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
   { path: 'signup', loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupModule) },
+  { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
+  { path: 'upload', loadChildren: () => import('./pages/upload/upload.module').then(m => m.UploadModule) },
   {
     path: '**',
     redirectTo: '/main'

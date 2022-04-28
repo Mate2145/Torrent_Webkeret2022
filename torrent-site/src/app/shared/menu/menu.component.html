@@ -11,13 +11,17 @@
         <mat-icon>app_registration</mat-icon>
         <span>Sign-Up</span>
     </a>
-    <a mat-list-item routerLink="/main" (click)="close()">
+    <a mat-list-item routerLink="/main" (click)="close()"  *ngIf="loggedinUser">
         <mat-icon>grid_view</mat-icon>
         <span>Feed</span>
     </a>
-    <a mat-list-item routerLink="/download" (click)="close()">
+    <a mat-list-item routerLink="/download" (click)="close()"  *ngIf="loggedinUser">
         <mat-icon>download</mat-icon>
         <span>Download</span>
+    </a>
+    <a mat-list-item routerLink="/upload" (click)="close()"  *ngIf="loggedinUser">
+        <mat-icon>upload</mat-icon>
+        <span>Upload</span>
     </a>
     <a mat-list-item routerLink="/contact" (click)="close()">
         <mat-icon>contacts</mat-icon>

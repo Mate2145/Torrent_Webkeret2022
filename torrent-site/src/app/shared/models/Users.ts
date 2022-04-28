@@ -1,10 +1,12 @@
 export interface User{
+    id: string;
     email: string;
+    username: string;
     name:
     {
         firstname?: string | null | undefined;
         lastname?: string|null;
     }
-    dateofbirth: Date;
+    dateofbirth: any;
     admin:boolean;
 }

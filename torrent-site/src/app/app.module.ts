@@ -25,12 +25,20 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ComdialogComponent } from './shared/comdialog/comdialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    DateFormatPipe
+    DateFormatPipe,
+    ComdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,16 +48,21 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
+    ReactiveFormsModule,
     MatIconModule,
     FlexLayoutModule,
     MatListModule,
     MatExpansionModule,
+    MatInputModule,
     MatTableModule,
     CdkAccordionModule,
+    MatDialogModule,
     MatGridListModule,
     MatDatepickerModule,
     MatCardModule,
+    MatSelectModule,
     MatNativeDateModule,
+    MatFormFieldModule,
     AngularFireModule.initializeApp(environment.firebase),
     //provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

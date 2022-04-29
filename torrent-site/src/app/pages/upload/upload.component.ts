@@ -35,6 +35,7 @@ export class UploadComponent implements OnInit {
 
    async onSubmit()
   {
+    //TODO Proba
     await this.getOwner();
     console.log(this.userdb?.username);
      this.torrentForm.get('owner')?.setValue(this.userdb?.username);
@@ -44,15 +45,11 @@ export class UploadComponent implements OnInit {
        metric: this.torrentForm.get('metric')?.value,
        link: this.torrentForm.get('link')?.value,
        username: this.torrentForm.get('owner')?.value,
-       owner: this.useruid,
+       owner: this.userdb?.id,
        date: this.torrentForm.get('date')?.value
      }
      console.log(torrent);
      this.dbservice.createNewTorrent(torrent);
-
-
-     
-
     
   }
 
@@ -62,11 +59,10 @@ export class UploadComponent implements OnInit {
 
    getOwner()
   {
-    const user = JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
-    this.useruid = user.uid;
+    
     return new Promise<void>((resolve,reject) =>
     {
-      this.dbservice.getUserbyId(user.uid).subscribe(
+      this.dbservice.getUserbyCurrentID().subscribe(
       {
         next: data =>
         {
@@ -74,8 +70,7 @@ export class UploadComponent implements OnInit {
           resolve();
         }
       });
-    });
-    
+    });  
   }
 
 }

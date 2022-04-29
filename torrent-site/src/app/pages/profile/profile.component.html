@@ -11,6 +11,10 @@
         <p>{{item?.name?.firstname}} {{item?.name?.lastname}}</p>
         <h2>Szuletesi datum:</h2>
         <p>{{item?.dateofbirth.toDate() | date:'shortDate'}}</p>
+        <h2>Feltoltott torrentek:</h2>
+        <p>{{torrentcounter}}</p>
+        <h2>Feltoltott kommentek:</h2>
+        <p>{{commentcounter}}</p>
 
     </mat-card>
 </div>

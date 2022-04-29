@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DbService } from 'src/app/shared/services/db.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ComdialogComponent } from 'src/app/shared/comdialog/comdialog.component';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-download',
@@ -13,7 +16,9 @@ import { DbService } from 'src/app/shared/services/db.service';
 export class DownloadComponent implements OnInit {
   items:Observable<any[]> | undefined;
   comments:Observable<any[]>|undefined;
-  constructor(private firedb:DbService) {
+  tabindex:number|undefined;
+  constructor(private firedb:DbService,
+    private dialog: MatDialog) {
     
    }
 
@@ -27,6 +32,34 @@ export class DownloadComponent implements OnInit {
     console.log(id);
   }
 
+  openDialog(id:string)
+  {
+    this.dialog.open(ComdialogComponent,{
+      width: '500px',
+      data: {ownerid: id},
+    });
+  }
+
+  refreshComment($event:any,id:string){
+    let index = $event.index;
+    if(index === 0){
+      return;
+    }
+    else{
+      this.comments = this.firedb.selectCommentsById(id);
+    }
+    
+  }
+
+  refreshCommentExpand($event:any,id:string)
+  {
+    this.comments = this.firedb.selectCommentsById(id);
+  }
+
+  setStep()
+  {
+
+  }
 
 
 }

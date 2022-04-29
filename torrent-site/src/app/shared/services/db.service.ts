@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { Torrent } from '../models/Torrents';
 import { User } from '../models/Users';
 
 
@@ -37,6 +38,15 @@ export class DbService {
         console.error(reject);
         //this.router.navigateByUrl("/signup");
       });
+  }
+
+  createNewTorrent(data:Torrent)
+  {
+    return this.firestoredb.collection('torrent').add(data).then(()=>{
+      console.log('Sikeres torrent hozzaadas');
+    }).catch(error =>{
+      console.error(error);
+    });
   }
 
   deleteUser(data: any) {

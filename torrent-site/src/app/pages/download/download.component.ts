@@ -22,6 +22,11 @@ export class DownloadComponent implements OnInit {
     this.comments = this.firedb.getDatabaseList('comment');
   }
 
+  getID(id:string)
+  {
+    console.log(id);
+  }
+
 
 
 }

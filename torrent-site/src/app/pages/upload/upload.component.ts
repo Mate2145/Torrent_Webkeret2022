@@ -5,6 +5,7 @@ import { User } from '../../shared/models/Users';
 import { DbService } from '../../shared/services/db.service';
 import {Router} from "@angular/router"
 import { user } from '@angular/fire/auth';
+import { Torrent } from 'src/app/shared/models/Torrents';
 
 @Component({
   selector: 'app-upload',
@@ -14,6 +15,7 @@ import { user } from '@angular/fire/auth';
 export class UploadComponent implements OnInit {
 
   userdb:User|undefined;
+  useruid:string|undefined;
 
   torrentForm = new FormGroup({
     name:  new FormControl(''),
@@ -34,7 +36,21 @@ export class UploadComponent implements OnInit {
    async onSubmit()
   {
     await this.getOwner();
-     console.log(this.userdb?.username);
+    console.log(this.userdb?.username);
+     this.torrentForm.get('owner')?.setValue(this.userdb?.username);
+     const torrent:Torrent ={
+       name: this.torrentForm.get('name')?.value,
+       size: this.torrentForm.get('size')?.value,
+       metric: this.torrentForm.get('metric')?.value,
+       link: this.torrentForm.get('link')?.value,
+       username: this.torrentForm.get('owner')?.value,
+       owner: this.useruid,
+       date: this.torrentForm.get('date')?.value
+     }
+     console.log(torrent);
+     this.dbservice.createNewTorrent(torrent);
+
+
      
 
     
@@ -47,6 +63,7 @@ export class UploadComponent implements OnInit {
    getOwner()
   {
     const user = JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
+    this.useruid = user.uid;
     return new Promise<void>((resolve,reject) =>
     {
       this.dbservice.getUserbyId(user.uid).subscribe(

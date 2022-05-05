@@ -10,16 +10,17 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-    <div>nMate</div>
+    <div>NemBuqiTorrent</div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
       <ul fxLayout fxLayoutGap="10px" class="nav-items">
         <li *ngIf="!(loggedinUser)"><a routerLink="/login">Login</a></li>
         <li *ngIf="loggedinUser"><a routerLink="/login" (click)="logout()">Logout</a></li>
-        <li ><a routerLink="/signup">Sign-Up</a></li>
+        <li *ngIf="!(loggedinUser)" ><a routerLink="/signup">Sign-Up</a></li>
         <li *ngIf="loggedinUser"><a routerLink="/main">Feed</a></li>
         <li *ngIf="loggedinUser"><a routerLink="/download">Download</a></li>
         <li *ngIf="loggedinUser"><a routerLink="/upload">Upload</a></li>
         <li><a routerLink="/contact">Contact</a></li>
+        <li *ngIf="loggedinUser"><a routerLink="/table">Legyszi-board</a></li>
         <li *ngIf="loggedinUser"><a routerLink="/profile">Profile</a></li>
       </ul>
     </div>

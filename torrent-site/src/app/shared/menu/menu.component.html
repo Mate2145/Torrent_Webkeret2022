@@ -7,7 +7,7 @@
         <mat-icon>logout</mat-icon>
         <span>Logout</span>
     </a>
-    <a mat-list-item routerLink="/signup" (click)="close()">
+    <a mat-list-item routerLink="/signup" (click)="close()" *ngIf="!(loggedinUser)">
         <mat-icon>app_registration</mat-icon>
         <span>Sign-Up</span>
     </a>
@@ -27,13 +27,13 @@
         <mat-icon>contacts</mat-icon>
         <span>Contact</span>
     </a>
+    <a mat-list-item routerLink="/profile" (click)="close()" *ngIf="loggedinUser">
+        <mat-icon>profile</mat-icon>
+        <span>Profile</span>
+    </a>
+    <a mat-list-item routerLink="/table" (click)="close()" *ngIf="loggedinUser">
+        <mat-icon>check_circle</mat-icon>
+        <span>Legyszi-board</span>
+    </a>
 </mat-nav-list>
 
-
-<!-- <select [(ngModel)]="currentPage" (change)="menuSwitch()">
-    <option value="login">Login</option>
-    <option value="signup">Sign-up</option>
-    <option value="main">Main</option>
-    <option value="download">Download</option>
-    <option value="contact">Contact</option>
-</select> -->

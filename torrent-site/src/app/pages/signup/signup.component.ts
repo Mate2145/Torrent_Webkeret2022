@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
       firstname: new FormControl(''),
       lastname: new FormControl('')
     })
+    
   });
 
 
@@ -67,6 +68,10 @@ export class SignupComponent implements OnInit {
 
   goBack(){
     this.location.back();
+  }
+
+  clearForm(){
+    this.signUpForm.reset();
   }
 
 }

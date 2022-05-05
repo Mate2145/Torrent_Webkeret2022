@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MainRoutingModule } from './main-routing.module';
-import { MainComponent } from './main.component';
+import { TableRoutingModule } from './table-routing.module';
+import { TableComponent } from './table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
@@ -11,15 +11,17 @@ import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
   declarations: [
-    MainComponent
+    TableComponent
   ],
   imports: [
     CommonModule,
-    MainRoutingModule,
+    TableRoutingModule,
     MatTableModule,
     MatExpansionModule,
     MatIconModule,
@@ -27,7 +29,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatButtonModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ]
 })
-export class MainModule { }
+export class TableModule { }

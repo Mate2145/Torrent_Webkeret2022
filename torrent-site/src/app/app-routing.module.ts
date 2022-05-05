@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'signup', loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupModule) },
   { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule) },
   { path: 'upload', loadChildren: () => import('./pages/upload/upload.module').then(m => m.UploadModule) },
+  { path: 'table', loadChildren: () => import('./pages/table/table.module').then(m => m.TableModule) },
   {
     path: '**',
     redirectTo: '/main'

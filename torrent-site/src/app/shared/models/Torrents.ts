@@ -7,4 +7,5 @@ export interface Torrent
     username: string;
     owner?: string | undefined;
     date: any;
+    description: string|undefined;
 }

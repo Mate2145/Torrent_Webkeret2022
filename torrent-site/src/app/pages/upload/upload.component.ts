@@ -23,7 +23,8 @@ export class UploadComponent implements OnInit {
     metric: new FormControl(''),
     date: new FormControl(''),
     link: new FormControl(''),
-    owner: new FormControl('')
+    owner: new FormControl(''),
+    description: new FormControl('')
   });
 
   constructor(private dbservice:DbService) { }
@@ -46,7 +47,8 @@ export class UploadComponent implements OnInit {
        link: this.torrentForm.get('link')?.value,
        username: this.torrentForm.get('owner')?.value,
        owner: this.userdb?.id,
-       date: this.torrentForm.get('date')?.value
+       date: this.torrentForm.get('date')?.value,
+       description: this.torrentForm.get('description')?.value
      }
      console.log(torrent);
      this.dbservice.createNewTorrent(torrent);
@@ -71,6 +73,10 @@ export class UploadComponent implements OnInit {
         }
       });
     });  
+  }
+
+  clearForm(){
+    this.torrentForm.reset();
   }
 
 }

@@ -3,6 +3,8 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 import { Torrent } from '../models/Torrents';
 import { User } from '../models/Users';
 import { Comment } from '../models/Comments';
+import { TAnswers } from '../models/TAnswers';
+import { PTorrent } from '../models/PTorrents';
 
 
 @Injectable({
@@ -64,9 +66,33 @@ export class DbService {
     });
   }
 
+  createNewAnswer(data:TAnswers)
+  {
+    return this.firestoredb.collection('anstorrent').add(data).then(()=>{
+      console.log('Sikeres torrent hozzaadas');
+    }).catch(error =>{
+      console.error(error);
+    });
+  }
+
+  createNewSeek(data:PTorrent)
+  {
+    return this.firestoredb.collection('ptorrent').add(data).then(()=>{
+      console.log('Sikeres keres hozzaadas');
+    }).catch(error =>{
+      console.error(error);
+    });
+  }
+
   selectCommentsById(id:string)
   {
     return this.firestoredb.collection<Comment>('comment',ref => ref.where('torrentid','==',id).orderBy('date','desc')).valueChanges({ idField: 'propertyId' });
+  }
+
+  selectAnswersById(id:string)
+  {
+    console.log(id);
+    return this.firestoredb.collection('anstorrent',ref => ref.where('ptorrentid','==',id)).valueChanges({ idField: 'propertyId' });
   }
 
   getUploadedTorrents(id:string)
@@ -77,6 +103,11 @@ export class DbService {
   getUploadedComments(id:string)
   {
      return this.firestoredb.collection('comment',ref => ref.where('userid','==',id)).valueChanges();
+  }
+
+  deleteObject(name:string,id:string)
+  {
+    return this.firestoredb.collection(name).doc(id).delete();
   }
 
   deleteUser(data: any) {

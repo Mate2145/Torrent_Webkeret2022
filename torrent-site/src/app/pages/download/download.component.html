@@ -1,6 +1,8 @@
+<div class="bg">
+
 <div class="head">
     <mat-card>
-        <h1>Downloads</h1>
+        <h1>Letöltés</h1>
     </mat-card>
 </div>
 
@@ -29,8 +31,11 @@
             <p>Neve: {{item.name}}</p>
             <p>Nagysága: {{item.size}} {{item.metric}}</p>
             <p>Feltöltötte: {{item.username}}</p>
+            <p>Rövid leírás:</p>
+            <p>{{item.description}}</p>
             <br/>
-            <a mat-raised-button color="warn" href="{{item.link}}" target="_blank">DOWNLOAD</a>
+            <a mat-raised-button color="primary" href="{{item.link}}" target="_blank">DOWNLOAD</a>
+            <a mat-raised-button [ngStyle]="{'margin-left': '10px'}" *ngIf="user.uid == item.owner" color="warn" (click)="onDelete(item.propertyId)" target="_blank">TÖRLÉS</a>
           </mat-tab>
 
           <ng-container *ngIf="(comments | async) === null">
@@ -42,9 +47,10 @@
               <mat-icon class="example-tab-icon">comment</mat-icon>
               Kommentek
             </ng-template>
-              <table>
+              <table class="answers">
                 <tr *ngFor="let item of comments|async">
                     {{item.comment}} | {{item.date.toDate() | date:'shortDate'}} | {{item.username}}
+                    <a mat-raised-button [ngStyle]="{'margin-left': '10px'}" *ngIf="user.uid == item.userid" color="warn" (click)="onDeleteParam('comment',item.propertyId)" target="_blank">TÖRLÉS</a>
                 </tr>
               </table>
               <br/>
@@ -54,6 +60,8 @@
         
       </mat-expansion-panel>
 </mat-accordion>
+
+</div>
 
 
 

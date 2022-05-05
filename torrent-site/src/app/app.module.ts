@@ -31,6 +31,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { AnswerdialogComponent } from './shared/answerdialog/answerdialog.component';
+import { UpdatedialogComponent } from './shared/updatedialog/updatedialog.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     MenuComponent,
     DateFormatPipe,
-    ComdialogComponent
+    ComdialogComponent,
+    AnswerdialogComponent,
+    UpdatedialogComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 export class DownloadComponent implements OnInit {
   items:Observable<any[]> | undefined;
   comments:Observable<any[]>|undefined;
+  user = JSON.parse(localStorage.getItem('user') as string) as firebase.default.User;
   tabindex:number|undefined;
   constructor(private firedb:DbService,
     private dialog: MatDialog) {
@@ -59,6 +60,22 @@ export class DownloadComponent implements OnInit {
   setStep()
   {
 
+  }
+
+  onDelete(id:string)
+  {
+    this.firedb.deleteObject("torrent",id).then(()=>{
+      window.alert('Sikeres torles');
+    });
+    
+  }
+
+  onDeleteParam(name:string,id:string)
+  {
+    this.firedb.deleteObject(name,id).then(()=>{
+      window.alert('Sikeres torles');
+    });
+    
   }
 
 

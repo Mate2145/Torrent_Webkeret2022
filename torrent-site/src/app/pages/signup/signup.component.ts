@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, createPlatform, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../shared/models/Users';
 import { DbService } from '../../shared/services/db.service';
@@ -16,14 +16,14 @@ export class SignupComponent implements OnInit {
    dbuser = "useer";
 
   signUpForm = new FormGroup({
-    email:  new FormControl(''),
-    username:  new FormControl(''),
-    password: new FormControl(''),
-    repassword: new FormControl(''),
-    birth: new FormControl(''),
+    email:  new FormControl('',Validators.required),
+    username:  new FormControl('',Validators.required),
+    password: new FormControl('',Validators.required),
+    repassword: new FormControl('',Validators.required),
+    birth: new FormControl('',Validators.required),
     name: new FormGroup({
-      firstname: new FormControl(''),
-      lastname: new FormControl('')
+      firstname: new FormControl('',Validators.required),
+      lastname: new FormControl('',Validators.required)
     })
     
   });
@@ -55,11 +55,11 @@ export class SignupComponent implements OnInit {
       console.log(user);
       this.dbservice.createnewUser(user);
       window.alert('Sikeres regisztracio');
-      this.signUpForm.reset();
-      //this.router.navigateByUrl('/profile');
+      //this.signUpForm.reset();
+      this.router.navigateByUrl('profile');
     }).catch(error =>{
       window.alert("Valami hiba tortent");
-      this.router.navigateByUrl("/login");
+      this.router.navigateByUrl("login");
       console.error(error);
     })
 

@@ -35,6 +35,7 @@
             <p>{{item.description}}</p>
             <br/>
             <a mat-raised-button color="primary" href="{{item.link}}" target="_blank">DOWNLOAD</a>
+            <a mat-raised-button [ngStyle]="{'margin-left': '10px'}" *ngIf="user.uid == item.owner" color="warn" (click)="onUpdate(item.propertyId,item.date,item.description,item.link,item.metric,item.name,item.size,item.owner,item.username)" target="_blank">Szerkesztés</a>
             <a mat-raised-button [ngStyle]="{'margin-left': '10px'}" *ngIf="user.uid == item.owner" color="warn" (click)="onDelete(item.propertyId)" target="_blank">TÖRLÉS</a>
           </mat-tab>
 

@@ -11,7 +11,7 @@ import { error } from 'console';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'torrent-site';
+  title = 'NemBuqiTorrent';
   page = 'main';
   routes: Array<string> = [];
   loggedinUser?:firebase.default.User|null;
@@ -61,4 +61,5 @@ export class AppComponent implements OnInit {
   {
     this.authServ.logout();
   }
+
 }

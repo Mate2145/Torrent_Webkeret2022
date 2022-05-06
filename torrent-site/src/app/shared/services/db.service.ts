@@ -117,10 +117,8 @@ export class DbService {
       .delete();
   }
 
-  updateUser(data: any) {
-    return this.firestoredb
-      .collection("coffeeOrders")
-      .doc(data.payload.doc.id)
-      .set({ completed: true }, { merge: true });
+  updateTorrent(id:string,data:any){
+    return this.firestoredb.collection('torrent').doc(id).update(data);
   }
+
 }

@@ -39,6 +39,10 @@ export class SignupComponent implements OnInit {
 
   onSubmit()
   {
+    if(this.signUpForm.get('password')?.value != this.signUpForm.get('repassword')?.value){
+      window.alert('Jelszavaid nem egyeznek');
+      return;
+    }
     console.log(this.signUpForm.value);
     this.authServ.signup(this.signUpForm.get("email")?.value,this.signUpForm.get("password")?.value).then(cred =>{
       const user:User = {

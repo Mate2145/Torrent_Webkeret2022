@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { User } from '../../shared/models/Users';
 import { DbService } from '../../shared/services/db.service';
@@ -18,16 +18,16 @@ export class UploadComponent implements OnInit {
   useruid:string|undefined;
 
   torrentForm = new FormGroup({
-    name:  new FormControl(''),
-    size: new FormControl(''),
-    metric: new FormControl(''),
-    date: new FormControl(''),
-    link: new FormControl(''),
-    owner: new FormControl(''),
-    description: new FormControl('')
+    name:  new FormControl('',Validators.required),
+    size: new FormControl('',Validators.required),
+    metric: new FormControl('',Validators.required),
+    date: new FormControl('',Validators.required),
+    link: new FormControl('',Validators.required),
+    owner: new FormControl('',Validators.required),
+    description: new FormControl('',Validators.required)
   });
 
-  constructor(private dbservice:DbService) { }
+  constructor(private dbservice:DbService,private router:Router) { }
 
   ngOnInit(): void
    {
@@ -51,7 +51,14 @@ export class UploadComponent implements OnInit {
        description: this.torrentForm.get('description')?.value
      }
      console.log(torrent);
-     this.dbservice.createNewTorrent(torrent);
+     if(torrent.name === ''){
+       window.alert('Töltsd ki a mezőket');
+       return;
+     }
+     this.dbservice.createNewTorrent(torrent).then(() =>{
+       window.alert('Sikeres Torrent feltöltés');
+       this.router.navigateByUrl('download');
+     });
     
   }
 
